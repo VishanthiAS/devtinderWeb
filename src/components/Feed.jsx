@@ -9,17 +9,25 @@ const Feed = () => {
   const feed = useSelector((store) => store.feed);
   const dispatch = useDispatch();
 
-  const getFeed = async () => {
-    if (feed) return;
-    try {
-      const res = await axios.get(BASE_URL + "/feed", {
-        withCredentials: true,
-      });
-      dispatch(addFeed(res?.data?.data));
-    } catch (err) {
-      //TODO: handle error
-    }
-  };
+  const getFeed = () => {
+  if (feed) return;
+  const mockData = [
+    {
+      id: 1,
+      name: "Vishanthi",
+      avatar: "https://i.pravatar.cc/300?img=1",
+      bio: "Frontend Developer from Chennai",
+    },
+    {
+      id: 2,
+      name: "Karthik",
+      avatar: "https://i.pravatar.cc/300?img=2",
+      bio: "Java Developer from Bangalore",
+    },
+  ];
+  dispatch(addFeed(mockData));
+};
+
 
   useEffect(() => {
     getFeed();
